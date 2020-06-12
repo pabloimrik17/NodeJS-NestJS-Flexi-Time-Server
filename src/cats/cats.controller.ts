@@ -3,25 +3,21 @@ import {
   Controller,
   Delete,
   Get,
-  Param,
+  Param, ParseIntPipe,
   Post,
   Put,
 } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { Cat } from '../interfaces/cat.interface';
-
-class CreateCatDto {
-  name: string;
-  age: number;
-  breed: string;
-}
+import { CreateCatDto } from './dto/create-cat.dto';
+import { ValidationPipe } from '../validation.pipe';
 
 @Controller('cats')
 export class CatsController {
   constructor(private catsService: CatsService) {}
 
   @Post()
-  async create(@Body() createCatDto: CreateCatDto): Promise<void> {
+  async create(@Body(new ValidationPipe()) createCatDto: CreateCatDto): Promise<void> {
     await this.catsService.create(createCatDto);
   }
 
@@ -31,7 +27,7 @@ export class CatsController {
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<string> {
+  async findOne(@Param('id', ParseIntPipe) id: number): Promise<string> {
     return `Returning cat with id ${id}`;
   }
 
