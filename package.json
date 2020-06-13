@@ -20,9 +20,13 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
+  "lint-staged": {
+    "*.ts": ["eslint", "prettier"],
+    "*": ["test", "test:e2e"]
+  },
   "husky": {
     "hooks": {
-      "pre-commit": "git-format-staged -f 'prettier --stdin --stdin-filepath \"{}\"' '*.js' '*.jsx' '*.ts' '*.tsx' '*.css' '*.json' '*.gql'"
+      "pre-commit": "lint-staged"
     }
   },
   "dependencies": {
@@ -51,6 +55,7 @@
     "git-format-staged": "^2.1.0",
     "husky": "^4.2.5",
     "jest": "26.0.1",
+    "lint-staged": "^10.2.10",
     "pre-commit": "^1.2.2",
     "prettier": "^1.19.1",
     "supertest": "^4.0.2",
