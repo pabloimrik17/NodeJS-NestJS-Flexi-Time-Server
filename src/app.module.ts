@@ -10,12 +10,10 @@ import { CatsController } from './cats/cats.controller';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule  implements NestModule {
+export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {
-    consumer
-      .apply(LoggerMiddleware)
-      .forRoutes(CatsController)
-      //.forRoutes("cats")
-      //.forRoutes({ path: "cats", method: RequestMethod.GET })
+    consumer.apply(LoggerMiddleware).forRoutes(CatsController);
+    //.forRoutes("cats")
+    //.forRoutes({ path: "cats", method: RequestMethod.GET })
   }
 }

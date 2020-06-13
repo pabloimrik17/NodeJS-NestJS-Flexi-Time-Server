@@ -8,10 +8,6 @@ export class AuthGuard implements CanActivate {
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest();
 
-    return this.validteRequest(request);
-  }
-
-  private validteRequest(request: any): boolean {
-    return Math.random() % 2 === 0;
+    return Math.round(Math.random()) % 2 === 0;
   }
 }
