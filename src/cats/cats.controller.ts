@@ -6,7 +6,8 @@ import {
   Param,
   ParseIntPipe,
   Post,
-  Put, UseGuards,
+  Put,
+  UseGuards,
 } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { Cat } from '../interfaces/cat.interface';
@@ -22,7 +23,7 @@ export class CatsController {
   constructor(private catsService: CatsService) {}
 
   @Post()
-  @Roles("admin")
+  @Roles('admin')
   async create(
     @Body(new ValidationPipe()) createCatDto: CreateCatDto,
   ): Promise<void> {

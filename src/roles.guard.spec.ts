@@ -6,7 +6,7 @@ describe('RolesGuard', () => {
 
   beforeEach(() => {
     reflector = new Reflector();
-  })
+  });
 
   it('should be defined', () => {
     expect(new RolesGuard(reflector)).toBeDefined();
