@@ -22,8 +22,8 @@
   },
   "lint-staged": {
     "*.ts": [
-      "lint",
-      "format"
+      "npm run lint",
+      "npm run format"
     ]
   },
   "husky": {

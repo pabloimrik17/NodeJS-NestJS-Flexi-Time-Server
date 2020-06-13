@@ -27,7 +27,7 @@ export class CatsController {
   async create(
     @Body(new ValidationPipe()) createCatDto: CreateCatDto,
   ): Promise<void> {
-              await this.catsService.create(createCatDto);
+    await this.catsService.create(createCatDto);
   }
 
   @Get()
@@ -37,7 +37,7 @@ export class CatsController {
 
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number): Promise<string> {
-    return           `Returning cat with id ${id}`;
+    return `Returning cat with id ${id}`;
   }
 
   @Put(':id')
