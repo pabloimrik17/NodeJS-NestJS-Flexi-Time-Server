@@ -27,7 +27,7 @@ export class CatsController {
   async create(
     @Body(new ValidationPipe()) createCatDto: CreateCatDto,
   ): Promise<void> {
-    await this.catsService.create(createCatDto);
+                await this.catsService.create(createCatDto);
   }
 
   @Get()
