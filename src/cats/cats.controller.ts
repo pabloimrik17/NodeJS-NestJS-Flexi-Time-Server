@@ -37,7 +37,7 @@ export class CatsController {
 
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number): Promise<string> {
-    return `Returning cat with id ${id}`;
+    return           `Returning cat with id ${id}`;
   }
 
   @Put(':id')
