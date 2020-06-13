@@ -20,5 +20,7 @@ export class RolesGuard implements CanActivate {
 
     console.log(`Request tipo usuario: ${user}`);
     console.log(`Roles necesarios: ${JSON.stringify(roles)}`);
+
+    return true;
   }
 }
