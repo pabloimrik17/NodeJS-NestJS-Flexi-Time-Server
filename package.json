@@ -21,7 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "lint-staged": {
-    "*.ts": ["eslint", "prettier"],
+    "*.ts": "npm run lint && npm run format",
     "*": ["test", "test:e2e"]
   },
   "husky": {
