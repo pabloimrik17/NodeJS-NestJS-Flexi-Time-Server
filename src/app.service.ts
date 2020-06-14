@@ -6,7 +6,7 @@ export class AppService {
     return 'Hello World!';
   }
 
-      funccionPrueba(): void {
-        console.log("HOLA");
-                      }
+  funccionPrueba(): void {
+    console.log('HOLA');
+  }
 }
