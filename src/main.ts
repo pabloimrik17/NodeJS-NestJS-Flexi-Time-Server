@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { version as projectVersion } from '../package.json';
 
 async function bootstrap() {
   const PORT = process.env.PORT || 3000;
@@ -12,7 +11,7 @@ async function bootstrap() {
     .setTitle('Flexi Time Server')
     .addBearerAuth()
     .setDescription('Flexi Time Server API description')
-    .setVersion(projectVersion)
+    .setVersion('0.1.0') // TODO ConfigService reading package.json?
     .build();
 
   const document = SwaggerModule.createDocument(app, swaggerDocumentOptions);
