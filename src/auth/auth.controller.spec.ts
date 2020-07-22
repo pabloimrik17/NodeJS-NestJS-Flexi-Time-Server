@@ -11,8 +11,11 @@ import { JwtStrategy } from './jwt.strategy';
 
 describe('Auth Controller', () => {
   let controller: AuthController;
+  let authService: AuthService;
 
   beforeEach(async () => {
+    jest.restoreAllMocks();
+
     const module: TestingModule = await Test.createTestingModule({
       imports: [
         UsersModule,
@@ -34,9 +37,32 @@ describe('Auth Controller', () => {
     }).compile();
 
     controller = module.get<AuthController>(AuthController);
+    authService = module.get<AuthService>(AuthService);
   });
 
   it('should be defined', () => {
     expect(controller).toBeDefined();
+  });
+
+  describe('Login', () => {
+    it('should return a access token based on the request user', async () => {
+      const mockedRequest = {
+        user: {
+          username: '1E3',
+          userId: 280,
+        },
+      };
+      const authServiceLoginReturn = { access_token: 'Lz1' };
+      const authServiceLoginSpy = jest
+        .spyOn(authService, 'login')
+        .mockResolvedValue(authServiceLoginReturn);
+
+      expect(await controller.login(mockedRequest)).toBe(
+        authServiceLoginReturn,
+      );
+
+      expect(authServiceLoginSpy).toBeCalledTimes(1);
+      expect(authServiceLoginSpy).toBeCalledWith(mockedRequest.user);
+    });
   });
 });
