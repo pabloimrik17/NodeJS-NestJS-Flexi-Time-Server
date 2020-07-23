@@ -29,7 +29,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run test && npm run test:e2e"
+      "pre-commit": "tsc && lint-staged && npm run test && npm run test:e2e"
     }
   },
   "dependencies": {
