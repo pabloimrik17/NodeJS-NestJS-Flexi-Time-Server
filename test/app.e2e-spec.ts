@@ -5,6 +5,8 @@ import { AppModule } from '../src/app.module';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
+  process.env.JWT_SECRET_PASS = '2k1I4M';
+  process.env.JWT_TOKEN_EXPIRATION = '20s';
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -22,5 +24,9 @@ describe('AppController (e2e)', () => {
     //   .expect('Hello World!');
 
     expect(1).toBe(1);
+  });
+
+  afterAll(async () => {
+    await app.close();
   });
 });

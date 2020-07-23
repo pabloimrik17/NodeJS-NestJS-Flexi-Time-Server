@@ -13,7 +13,6 @@ import { AuthController } from './auth.controller';
   imports: [
     UsersModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
-    ConfigModule.forRoot(),
     JwtModule.registerAsync({
       imports: [ConfigModule.forRoot()],
       useFactory: async (configService: ConfigService<ConfigEnv>) => ({
@@ -22,6 +21,7 @@ import { AuthController } from './auth.controller';
       }),
       inject: [ConfigService],
     }),
+    ConfigModule,
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],
   controllers: [AuthController],
